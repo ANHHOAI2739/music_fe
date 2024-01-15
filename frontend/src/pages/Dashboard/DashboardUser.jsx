@@ -8,7 +8,8 @@ import authAPI from "../../apis/authAPI";
 
 const DashboardUser = () => {
  
-  const {allUsers,setAllUsers,setTotalUsers} = useContext(UserContext)
+  const {allUsers,setAllUsers,setTotalUsers,handleDeleteUser} = useContext(UserContext)
+
   useEffect(()=>{
     const getAllUsers = async ()=>{
       const response = await authAPI.getAllUsers();
@@ -41,6 +42,8 @@ const DashboardUser = () => {
             email={user.email}
             isAdmin={user.isAdmin}
             createdAt={user.createdAt}
+            handleDeleteUser= {handleDeleteUser}
+            userId = {user._id}
           />
         ))}
         </div>

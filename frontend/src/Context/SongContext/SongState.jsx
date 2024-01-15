@@ -3,9 +3,13 @@ import SongContext from "./SongContext";
 import songAPI from "../../apis/songAPI";
 
 const SongState = ({ children }) => {
+  const [likedSongs, setLikedSongs] = useState([]);
+  console.log(likedSongs);
+  const [selectedSong, setSelectedSong] = useState(null);
   const [allSong, setAllSong] = useState();
   const [newSongName, setNewSongName] = useState('');
   const [newArtistName, setNewArtistName] = useState('')
+  const [isPlaying, setIsPlaying] = useState(false);
   const [songData, setSongData] = useState({
     artist: "",
     name: "",
@@ -16,7 +20,6 @@ const SongState = ({ children }) => {
     song: "",
     artistImg: "",
   });
-  // console.log(songData);
 
   const handleImageChange = async (e) => {
     const file = e.target.files[0];
@@ -86,8 +89,7 @@ const SongState = ({ children }) => {
       console.log(error);
     }
   };
-  const handleUpdateSong = async (songId,newSongName,newArtistName) => {
-   console.log(newArtistName,'newArtistName');
+  const handleUpdateSong = async (songId) => {
     try {
       const {
        artist,
@@ -100,8 +102,8 @@ const SongState = ({ children }) => {
         artistImg,
       } = songData;
       const updateSong = await songAPI.updateSong(`${songId}`, {
-        artist,
-        name,
+        artist: newArtistName,
+        name :newSongName,
         album,
         category,
         language,
@@ -109,8 +111,7 @@ const SongState = ({ children }) => {
         song,
         artistImg,
       });
-      console.log(updateSong);
-      console.log(newArtistName,'newArtistName sau updateSong');
+      window.location.reload();
     } catch (error) {
       console.log(error);
     }
@@ -130,6 +131,27 @@ const SongState = ({ children }) => {
     };
     fetchAllSong();
   }, []);
+  const getSongById = async (songId) => {
+    try {
+      const response = await songAPI.getByIdSong(songId);
+      setSelectedSong(response.data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const handlePlayClick = () => {
+    setIsPlaying(true);
+  };
+
+
+  const handleLike = async (songId) => {
+    try {
+      const response = await songAPI.likeSong(songId);
+    } catch (error) {
+      console.error('Error liking song:', error.message);
+    }
+  };
+  
   return (
     <SongContext.Provider
       value={{
@@ -146,7 +168,17 @@ const SongState = ({ children }) => {
         newSongName,
         setNewSongName,
         newArtistName,
-        setNewArtistName
+        setNewArtistName,
+        getSongById,
+        selectedSong,
+        setSelectedSong,
+        isPlaying,
+        setIsPlaying,
+        handlePlayClick,
+      
+        handleLike,
+        likedSongs,
+        setLikedSongs
 
       }}
     >

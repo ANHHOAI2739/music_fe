@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import moment from 'moment';
+import { CiTrash } from "react-icons/ci";
 const DashboardUserContent = (props) => {
-  const { profilePic,username,email,createdAt,isAdmin } = props;
+  const { profilePic,username,email,createdAt,isAdmin,handleDeleteUser,userId } = props;
   const [selectedRole, setSelectedRole] = useState(isAdmin ? "admin" : "member");
 
   const handleRoleChange = (event) => {
@@ -9,12 +10,18 @@ const DashboardUserContent = (props) => {
       setSelectedRole(event.target.value);
     }
   };
+  const handleDeleteUserClick = () =>{
+    handleDeleteUser(userId)
+  }
 const date = moment(createdAt).format('DD/MM/YYYY');
 
   return (
     <>
       {/* content dưới */}
       <div className="flex flex-col sm:flex-row items-center justify-evenly border border-t-0 rounded-lg transition duration-400 hover:bg-white hover:shadow-lg">
+       <button className="text-xl" onClick={handleDeleteUserClick}>
+       <CiTrash />
+       </button>
         <img
           src={profilePic}
           alt=""

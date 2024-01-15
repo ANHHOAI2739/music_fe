@@ -1,18 +1,8 @@
-import React, { useState } from 'react'
-
+import React, { useContext } from 'react'
+import UserContext from '../../Context/UserContext/UserContext';
 const Search = () => {
-    const [searchTerm, setSearchTerm] = useState("");
-
-    const handleKeyPress = (event) => {
-      if (event.key === "Enter") {
-        search();
-        setSearchTerm('')
-      }
-    };
-  
-    const search = () => {
-      console.log("Searching:", searchTerm);
-    };
+  const {searchTerm,setSearchTerm,handleKeyPress} = useContext(UserContext)
+ 
   return (
     <div >
     <input
@@ -23,6 +13,7 @@ const Search = () => {
       onChange={(event) => setSearchTerm(event.target.value)}
       onKeyPress={handleKeyPress}
     />
+    
   </div>
   )
 }

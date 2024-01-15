@@ -7,7 +7,9 @@ const songAPI = {
   addArtistImg: (values) => axiosInstance.post("/songs/artistImg",values),
   addAudio: (values) => axiosInstance.post("/songs/audio",values),
   deleteSong: (songId) => axiosInstance.delete(`/songs/${songId}`),
-  updateSong:(songId) => axiosInstance.put(`/songs/${songId}`),
+  updateSong:(songId,values) => axiosInstance.put(`/songs/${songId}`,values),
+  getByIdSong:(songId) => axiosInstance.get(`/songs/${songId}`),
+  likeSong:(songId) => axiosInstance.put(`/songs/like/${songId}`)
 
 }
 

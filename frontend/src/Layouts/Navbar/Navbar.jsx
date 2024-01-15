@@ -165,7 +165,7 @@ const Navbar = () => {
                   Your Profile
                 </Link>
                 <Link
-                  to={"/"}
+                  to={"/favourite"}
                   className="block px-4 py-2 text-lg text-gray-700  hover:font-bold"
                   role="menuitem"
                   tabIndex="-1"
