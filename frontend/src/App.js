@@ -16,6 +16,8 @@ import DashboardArtist from './pages/Dashboard/DashboardArtist';
 import DashboardAlbums from './pages/Dashboard/DashboardAlbums';
 import DashboardHome from './pages/Dashboard/DashboardHome';
 import DashboardAddSong from './pages/Dashboard/DashboardAddSong';
+import SearchPage from './pages/Search/SearchPage';
+import Favourite from './pages/MyFavourite/Favourite';
 
 
 function App() {
@@ -29,6 +31,7 @@ function App() {
         <Route path='/premium' element={<Premium/>}/>
         <Route path='/contact' element={<Contact/>}/>
         <Route path='/profile' element={<Profile/>}/>
+        <Route path='/favourite' element={<Favourite/>}/>
         
         <Route path='/dashboard/home' element={<DashboardHome/>}/>
         <Route path='/dashboard/users' element={<DashboardUser/>}/>
@@ -36,7 +39,7 @@ function App() {
         <Route path='/dashboard/artists' element={<DashboardArtist/>}/>
         <Route path='/dashboard/albums' element={<DashboardAlbums/>}/>
         <Route path='/dashboard/add' element={<DashboardAddSong/>}/>
-        
+        <Route path='/search' element={<SearchPage/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/register' element={<Register/>}/>
 

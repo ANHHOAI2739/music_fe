@@ -7,6 +7,7 @@ const AuthState = ({ children }) => {
     isAuthenticated: false,
     user: {},
   });
+  
   const navigate = useNavigate();
   const handleLogin = async () => {
    try {
@@ -36,10 +37,13 @@ const AuthState = ({ children }) => {
       handleLogin();
     }
   }, []);
+
+ 
   return (
     <AuthenContext.Provider
       value={{
         auth,
+        setAuth,
         handleLogin,
         handleLogout,
       }}
