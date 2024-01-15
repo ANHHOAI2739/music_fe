@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { Modal } from "antd";
 import { AiFillPlayCircle } from "react-icons/ai";
 import { FaHeart } from "react-icons/fa";
-
 const DashboardSongContent = (props) => {
   const {
     image,
@@ -23,43 +23,33 @@ const DashboardSongContent = (props) => {
     handleLike,
     likedSongs,
   } = props;
-
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
-
-
-
+  
   let limitNameSong = nameSong;
   if (nameSong.length > 20) {
     limitNameSong = nameSong.substring(0, 20) + "...";
   }
-
   const handleMenuToggle = () => {
     setIsMenuOpen(!isMenuOpen);
   };
-
   const handleUpdateSongClick = () => {
     handleUpdateSong(songId);
   };
-
   const handleDeleteClick = () => {
     handleDeleteSong(songId);
   };
-
   const showModal = () => {
     setIsModalOpen(true);
   };
-
   const handleCancel = () => {
     setIsModalOpen(false);
   };
-
   const handleLikeClick = () => {
     setIsLiked(!isLiked);
     handleLike(songId);
-  };
-
+    };
   return (
     <div
       className={`${bgColor} flex flex-col items-center justify-center aspect-square rounded-lg w-60 transition duration-400 hover:bg-white hover:shadow-lg relative`}
